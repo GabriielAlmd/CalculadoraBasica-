@@ -1,53 +1,94 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CalculadoraBasica
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            //Usuario ira entrar com DOIS numeros 
-            Console.WriteLine("Digite o primeiro número: ");
-            double num1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Qual Operação deseja fazer? :");
+            Console.WriteLine("1- Adição");
+            Console.WriteLine("2-Subtração");
+            Console.WriteLine("3- Multiplicação");
+            Console.WriteLine("4- Divisão \n");//ao usar \n iral saltar +1 linha abaixo
 
-            Console.WriteLine("Digite o segundo número: ");
-            double num2 = double.Parse(Console.ReadLine());
+           
 
-            //Usuario ira entrar com a OPERAÇÃO DESEJADA EX:divisão,multiplicação..etc
-            Console.WriteLine("Escolha a operação: ");
-            Console.WriteLine("1 - Soma");
-            Console.WriteLine("2 - Subtração");
-            Console.WriteLine("3 - Multiplicação");
-            Console.WriteLine("4 - Divisão");
-            
-            int op = int.Parse(Console.ReadLine());
+            int operacao = int.Parse(Console.ReadLine()); //int.parse e para converter string\console, para aceitar numeros inteiro
 
-            //Ira declarar uma variável para armazenar o resultado da Operação
-            double resultado = 0;
+            Console.WriteLine("Digite o primeiro numero: ");
+            int num1 = int.Parse(Console.ReadLine());
 
-            // Usar um switch para executar a operação escolhida. Cada case bloco deve terminar ...
-            //com um break instrução que encerra a switch instrução.
-            switch (op)
+            Console.WriteLine("Digite o segundo numero: ");
+            int num2 = int.Parse(Console.ReadLine());
+
+            int resultado = 0;
+
+            switch (operacao)
             {
                 case 1:
-                    resultado = num1 + num2;
-                    break;
+                    {
+                        resultado = Adicao(num1, num2);
+                        break;
+                    }
                 case 2:
-                    resultado = num1 - num2;
-                    break;
+                    {
+                        resultado = Subtracao(num1, num2);
+                        break;
+                    }
                 case 3:
-                    resultado = num1 * num2;
-                    break;
+                    {
+                        resultado = Multiplicacao(num1, num2);
+                        break;
+                     }
                 case 4:
-                    resultado = num1 / num2;
-                    break;
+                    {
+                        resultado = Divisao(num1, num2);
+                        break;
+                    }
+                    //DEFAULT E PRA RETORNAR UMA MENSAGEM CASO NENHUM DO NUMERO CITADOS/USADOS ACIMA FOR USADO 
                 default:
-                    Console.WriteLine("Operação inválida.");
+                    Console.WriteLine("Numero invalido Digite um novo numero.");
                     break;
             }
-
-            // Imprimir o resultado na tela apos aperta ENTER
-            Console.WriteLine("O resultado é: " + resultado);
+            Console.WriteLine("O resultado da operação com os números {0} e {1} é:{2}",num1, num2, resultado);
+            Console.ReadLine();        
         }
+
+
+
+
+
+
+        //OS METODOS DE CADA OPERAÇÃO ABAIXO  USADOS PARA REALIZAR A OPERAÇÃO E RETORNAR COM O VALOR
+        public static int Adicao (int num1, int num2)
+        {
+            int resultado = num1 + num2;
+            return resultado;
+        }
+        
+        public static int Subtracao (int num1, int num2)
+        {
+            int resultado = num1 - num2;
+            return resultado;
+        }
+        
+        public static int Multiplicacao (int num1, int num2)
+        {
+            int resultado = num1 * num2;
+            return resultado;
+        }
+        
+        public static int Divisao (int num1, int num2)
+        {
+            int resultado = num1 / num2;
+            return resultado;
+        }
+        
     }
 }
